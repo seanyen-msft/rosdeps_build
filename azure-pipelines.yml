@@ -1,0 +1,12 @@
+jobs:
+- job: Bootstrap
+  steps:
+  - script: |
+      choco sources add -n=roswin -s https://roswin.azurewebsites.net/api/v2/ --priority 1
+      choco upgrade boost
+
+- job: Build
+  dependsOn: Bootstrap
+  steps:
+  - script: |
+      choco list --localonly
